@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ethereum-role
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "create", "update", "delete"]
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ethereum-role-binding
+subjects:
+- kind: User
+  name: "YOUR_USER_NAME"
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: ethereum-role
+  apiGroup: rbac.authorization.k8s.io

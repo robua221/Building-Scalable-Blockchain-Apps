@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ethereum-node
+spec:
+  serviceName: "ethereum-node"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ethereum-node
+  template:
+    metadata:
+      labels:
+        app: ethereum-node
+    spec:
+      containers:
+      - name: ethereum-node
+        image: docker-ethereum-image:latest
+        # Add other container configuration options
+        ports:
+        - containerPort: 8545
+        - containerPort: 30303
+        # Add volume mounts if needed
+  # Add volumeClaimTemplates for persistent storage
